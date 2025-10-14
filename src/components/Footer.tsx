@@ -56,10 +56,20 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 text-center text-sm text-white/60">
-          <p>
-            © {new Date().getFullYear()} Subtle Care. All rights reserved. | Privacy Policy | Terms of Service
-          </p>
+        <div className="border-t border-white/10 pt-8">
+          <div className="text-center text-sm text-white/60 mb-6">
+            <p className="mb-4">
+              © {new Date().getFullYear()} Subtle Care. All rights reserved. | Privacy Policy | Terms of Service
+            </p>
+            <div className="max-w-2xl mx-auto text-xs text-white/50 bg-white/5 rounded-lg p-4">
+              <p className="font-medium mb-2">Sources & Notes</p>
+              <p>
+                Content and pricing model based on the Subtle Care service framework.
+                Pricing includes KES 3,000 per-case bill review and 20% of savings for bills above KES 100,000.
+                Employer subscription tiers and add-on service pricing are recommended and customizable.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
