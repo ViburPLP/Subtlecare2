@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Shield, Lock, CreditCard } from 'lucide-react';
 import FileUpload from '../components/FileUpload';
 import DashboardPreview from '../components/DashboardPreview';
-import Pricing from '../components/Pricing';
+import Pricing from '../components/PricingSection';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 
