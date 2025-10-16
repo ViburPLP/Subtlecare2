@@ -9,6 +9,7 @@ import SocialProof from '../components/SocialProof';
 import FAQ from '../components/FAQ';
 import GetStarted from '../components/GetStarted';
 import Footer from '../components/Footer';
+import WhatsAppButton from '../components/WhatsAppButton';
 
 export default function SinglePage() {
   return (
@@ -24,6 +25,7 @@ export default function SinglePage() {
       <FAQ />
       <GetStarted />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

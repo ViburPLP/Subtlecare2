@@ -1,19 +1,64 @@
-import { Shield, Lock, CreditCard } from 'lucide-react';
-import FileUpload from './FileUpload';
+import { Shield, Lock, CreditCard, Mail, MessageCircle } from 'lucide-react';
 
 export default function GetStarted() {
+  const phoneNumber = '+254700000000';
+  const email = 'hello@subtlecare.co.ke';
+  const whatsappMessage = encodeURIComponent('Hello Subtle Care! I would like to share my medical bills for review.');
+
   return (
     <section id="get-started" className="bg-white py-16 sm:py-20 lg:py-28">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-[#0b1430] mb-4">Get started today</h2>
           <p className="text-lg text-[#0b1430]/70 max-w-2xl mx-auto">
-            Upload your medical bills securely and let our team start working for you
+            Share your medical bills with us and let our team start working for you
           </p>
         </div>
 
         <div className="mb-12">
-          <FileUpload />
+          <div className="bg-[#f6f8fa] rounded-xl p-8 sm:p-12">
+            <h3 className="text-xl font-semibold text-[#0b1430] mb-6 text-center">
+              Share your documents via
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              <a
+                href={`mailto:${email}?subject=Medical Bill Review Request&body=Hello Subtle Care Team,%0D%0A%0D%0AI would like to submit my medical bills for review. Please find them attached.%0D%0A%0D%0AThank you.`}
+                className="flex flex-col items-center justify-center p-8 bg-white rounded-xl border-2 border-[#0198a7] hover:border-[#0198a7] hover:shadow-xl transition-all duration-220 hover:-translate-y-1 group"
+              >
+                <div className="w-16 h-16 bg-[#0198a7] bg-opacity-10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#0198a7] group-hover:scale-110 transition-all duration-220">
+                  <Mail className="w-8 h-8 text-[#0198a7] group-hover:text-white transition-colors duration-220" aria-hidden="true" />
+                </div>
+                <h4 className="text-lg font-semibold text-[#0b1430] mb-2">Email</h4>
+                <p className="text-sm text-[#0b1430]/70 text-center mb-4">
+                  Send your bills securely via email
+                </p>
+                <span className="text-sm font-medium text-[#0198a7] group-hover:underline">
+                  Send Email →
+                </span>
+              </a>
+
+              <a
+                href={`https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center p-8 bg-white rounded-xl border-2 border-[#25D366] hover:border-[#25D366] hover:shadow-xl transition-all duration-220 hover:-translate-y-1 group"
+              >
+                <div className="w-16 h-16 bg-[#25D366] bg-opacity-10 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#25D366] group-hover:scale-110 transition-all duration-220">
+                  <MessageCircle className="w-8 h-8 text-[#25D366] group-hover:text-white transition-colors duration-220" aria-hidden="true" />
+                </div>
+                <h4 className="text-lg font-semibold text-[#0b1430] mb-2">WhatsApp</h4>
+                <p className="text-sm text-[#0b1430]/70 text-center mb-4">
+                  Share your bills via WhatsApp
+                </p>
+                <span className="text-sm font-medium text-[#25D366] group-hover:underline">
+                  Open WhatsApp →
+                </span>
+              </a>
+            </div>
+            <p className="text-sm text-[#0b1430]/60 text-center mt-6">
+              Our team will review your documents and respond within 48 hours
+            </p>
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-3 gap-6 mb-12">
