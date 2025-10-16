@@ -58,6 +58,34 @@ export default function GetStarted() {
             <p className="text-sm text-[#0b1430]/60 text-center mt-6">
               Our team will review your documents and respond within 48 hours
             </p>
+
+            <div className="mt-8 pt-8 border-t border-[#0198a7] border-opacity-20">
+              <p className="text-xs font-medium text-[#0b1430]/70 text-center mb-4">
+                Accredited & Recognized by
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+                <div className="flex flex-col items-center gap-2 px-4 py-3 bg-white rounded-lg border border-[#0198a7] border-opacity-10">
+                  <div className="w-12 h-12 bg-[#0198a7] bg-opacity-10 rounded-full flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-[#0198a7]" aria-hidden="true" />
+                  </div>
+                  <span className="text-xs font-semibold text-[#0b1430] text-center">ODPC Kenya</span>
+                </div>
+
+                <div className="flex flex-col items-center gap-2 px-4 py-3 bg-white rounded-lg border border-[#253f94] border-opacity-10">
+                  <div className="w-12 h-12 bg-[#253f94] bg-opacity-10 rounded-full flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-[#253f94]" aria-hidden="true" />
+                  </div>
+                  <span className="text-xs font-semibold text-[#0b1430] text-center">KMPDC</span>
+                </div>
+
+                <div className="flex flex-col items-center gap-2 px-4 py-3 bg-white rounded-lg border border-[#0198a7] border-opacity-10">
+                  <div className="w-12 h-12 bg-[#0198a7] bg-opacity-10 rounded-full flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-[#0198a7]" aria-hidden="true" />
+                  </div>
+                  <span className="text-xs font-semibold text-[#0b1430] text-center">MOH Kenya</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
