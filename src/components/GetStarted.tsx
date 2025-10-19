@@ -9,7 +9,7 @@ export default function GetStarted() {
     <section id="get-started" className="bg-white py-16 sm:py-20 lg:py-28">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-[#0b1430] mb-4">Get started today</h2>
+          <h2 className="text-[#0b1430] mb-4">Contact us to get started</h2>
           <p className="text-lg text-[#0b1430]/70 max-w-2xl mx-auto">
             Share your medical bills with us and let our team start working for you
           </p>
