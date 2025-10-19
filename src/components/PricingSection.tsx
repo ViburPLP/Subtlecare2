@@ -1,4 +1,5 @@
-import { Check, Stethoscope, Building2, Home, Plane } from 'lucide-react';
+import { Check, Stethoscope, Building2, Home, Plane, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState } from 'react';
 
 const plans = [
   {
@@ -65,32 +66,82 @@ const addOns = [
     icon: Stethoscope,
     description: 'Connect with qualified medical specialists for independent assessment of diagnosis and treatment plans. Get clarity and confidence in your healthcare decisions.',
     benefits: ['Board-certified specialists', 'Detailed medical report', 'Treatment alternatives review', 'Virtual consultation included'],
-    price: 'Contact for quote',
+    detailedDescription: 'Our Expert Second Opinion service connects you with board-certified medical specialists who provide independent assessments of your diagnosis and treatment plans. Get the clarity and confidence you need to make informed healthcare decisions.',
+    process: [
+      'Submit your medical records and current diagnosis',
+      'Our team matches you with a relevant specialist',
+      'Specialist reviews your case thoroughly',
+      'Receive detailed medical report with recommendations',
+      'Virtual consultation to discuss findings',
+    ],
+    pricing: {
+      general: { label: 'General Conditions', amount: 'KES 2,500' },
+      specialized: { label: 'Specialized Conditions', amount: 'KES 5,000' },
+    },
   },
   {
     name: 'Admission Support Package',
     icon: Building2,
     description: 'Navigate hospital admissions with expert guidance. We handle pre-authorization, coordinate with insurance, and provide cost estimates before admission.',
     benefits: ['Pre-authorization assistance', 'Insurance coordination', 'Cost estimate & breakdown', 'Hospital selection guidance'],
-    price: 'Contact for quote',
+    detailedDescription: 'Comprehensive support from admission through discharge. Our team handles all coordination with the hospital and insurance providers, ensuring a smooth admission process and monitoring your case throughout your stay.',
+    process: [
+      'Pre-admission consultation and cost estimation',
+      'Insurance pre-authorization processing',
+      'Hospital admission coordination',
+      'Daily monitoring during course of admission (up to 15 days)',
+      'Discharge processing and final bill review',
+    ],
+    pricing: {
+      package: { label: 'Package Cost', amount: 'KES 20,000' },
+      includes: 'Includes admission processing, follow-up for up to 15 days, and discharge processing',
+      additional: { label: 'Additional Days', amount: 'KES 1,000 per day after 15 days' },
+      bonus: 'Final bill review offered complimentarily at no extra charge',
+    },
   },
   {
     name: 'Home Care Coordination',
     icon: Home,
     description: 'Arrange professional post-hospital care at home including nursing, physiotherapy, and medical equipment rental at transparent, competitive rates.',
     benefits: ['Vetted care providers', 'Equipment rental coordination', 'Care plan management', 'Quality monitoring'],
-    price: 'Contact for quote',
+    detailedDescription: 'Post-discharge care coordination designed to support your recovery at home. We arrange professional nursing, physiotherapy, medical equipment, and ongoing care management tailored to your specific needs.',
+    process: [
+      'Assessment of post-discharge care needs',
+      'Matching with qualified care providers',
+      'Medical equipment arrangement and rental',
+      'Care plan development and coordination',
+      'Ongoing quality monitoring and adjustments',
+    ],
+    pricing: {
+      custom: true,
+      description: 'Pricing is customized based on individual care needs, duration, and services required. Contact us for a personalized quote.',
+    },
   },
   {
     name: 'International Medical Travel',
     icon: Plane,
     description: 'Access affordable, high-quality medical care abroad. We coordinate everything from hospital selection to travel logistics and post-treatment follow-up.',
     benefits: ['Hospital accreditation verification', 'Travel & accommodation support', 'Medical records coordination', 'Cost comparison across facilities'],
-    price: 'Contact for quote',
+    detailedDescription: 'Access world-class medical care abroad at competitive prices. We handle everything from selecting accredited international hospitals to coordinating travel, accommodation, and ensuring seamless medical records transfer. Includes comprehensive support for international treatment and claims assistance.',
+    process: [
+      'Medical needs assessment and hospital selection',
+      'Verification of hospital accreditation and specialists',
+      'Cost comparison across multiple facilities',
+      'Travel and accommodation coordination',
+      'Medical records transfer and translation',
+      'On-ground support during treatment',
+      'Post-treatment follow-up and claims assistance',
+    ],
+    pricing: {
+      custom: true,
+      description: 'Pricing is tailored based on destination, treatment type, duration, and specific client requirements. We provide detailed quotes comparing multiple international facilities.',
+    },
   },
 ];
 
 export default function PricingSection() {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -103,6 +154,10 @@ export default function PricingSection() {
         behavior: 'smooth',
       });
     }
+  };
+
+  const toggleCard = (index: number) => {
+    setExpandedCard(expandedCard === index ? null : index);
   };
 
   return (
@@ -181,49 +236,144 @@ export default function PricingSection() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            {addOns.map((addon, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 border border-[#0198a7] border-opacity-20 hover:border-[#0198a7] hover:shadow-xl transition-all duration-320 hover:-translate-y-1"
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-[#0198a7] bg-opacity-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <addon.icon className="w-6 h-6 text-[#0198a7]" aria-hidden="true" />
+            {addOns.map((addon, index) => {
+              const isExpanded = expandedCard === index;
+              return (
+                <div
+                  key={index}
+                  className={`bg-white rounded-xl p-6 border border-[#0198a7] border-opacity-20 hover:border-[#0198a7] hover:shadow-xl transition-all duration-320 ${
+                    isExpanded ? 'lg:col-span-2 shadow-xl border-[#0198a7]' : ''
+                  }`}
+                >
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 bg-[#0198a7] bg-opacity-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <addon.icon className="w-6 h-6 text-[#0198a7]" aria-hidden="true" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-semibold text-[#0b1430] mb-2">
+                        {addon.name}
+                      </h4>
+                      <p className="text-sm text-[#0b1430]/70 leading-relaxed">
+                        {addon.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-[#0b1430] mb-2">
-                      {addon.name}
-                    </h4>
-                    <p className="text-sm text-[#0b1430]/70 leading-relaxed">
-                      {addon.description}
-                    </p>
+
+                  {!isExpanded && (
+                    <div className="mb-4">
+                      <p className="text-xs font-medium text-[#0b1430]/70 mb-2">What's included:</p>
+                      <ul className="grid gap-2">
+                        {addon.benefits.map((benefit, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-[#0198a7] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                            <span className="text-sm text-[#0b1430]/80">{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {isExpanded && (
+                    <div className="space-y-6 mb-6">
+                      <div>
+                        <h5 className="text-sm font-semibold text-[#0b1430] mb-3">Overview</h5>
+                        <p className="text-sm text-[#0b1430]/70 leading-relaxed">
+                          {addon.detailedDescription}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h5 className="text-sm font-semibold text-[#0b1430] mb-3">How it works</h5>
+                        <ol className="space-y-2">
+                          {addon.process.map((step, idx) => (
+                            <li key={idx} className="flex items-start gap-3">
+                              <span className="flex-shrink-0 w-6 h-6 bg-[#0198a7] bg-opacity-10 rounded-full flex items-center justify-center text-xs font-semibold text-[#0198a7]">
+                                {idx + 1}
+                              </span>
+                              <span className="text-sm text-[#0b1430]/80 pt-0.5">{step}</span>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+
+                      <div className="bg-[#f6f8fa] rounded-lg p-4">
+                        <h5 className="text-sm font-semibold text-[#0b1430] mb-3">Pricing</h5>
+                        {addon.pricing.custom ? (
+                          <p className="text-sm text-[#0b1430]/70">{addon.pricing.description}</p>
+                        ) : (
+                          <div className="space-y-3">
+                            {addon.pricing.general && (
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-[#0b1430]/80">{addon.pricing.general.label}</span>
+                                <span className="text-sm font-semibold text-[#0198a7]">{addon.pricing.general.amount}</span>
+                              </div>
+                            )}
+                            {addon.pricing.specialized && (
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-[#0b1430]/80">{addon.pricing.specialized.label}</span>
+                                <span className="text-sm font-semibold text-[#0198a7]">{addon.pricing.specialized.amount}</span>
+                              </div>
+                            )}
+                            {addon.pricing.package && (
+                              <div>
+                                <div className="flex justify-between items-center mb-2">
+                                  <span className="text-sm text-[#0b1430]/80">{addon.pricing.package.label}</span>
+                                  <span className="text-sm font-semibold text-[#0198a7]">{addon.pricing.package.amount}</span>
+                                </div>
+                                {addon.pricing.includes && (
+                                  <p className="text-xs text-[#0b1430]/60 mb-2">{addon.pricing.includes}</p>
+                                )}
+                                {addon.pricing.additional && (
+                                  <div className="flex justify-between items-center mb-2">
+                                    <span className="text-xs text-[#0b1430]/70">{addon.pricing.additional.label}</span>
+                                    <span className="text-xs font-medium text-[#0198a7]">{addon.pricing.additional.amount}</span>
+                                  </div>
+                                )}
+                                {addon.pricing.bonus && (
+                                  <div className="mt-3 pt-3 border-t border-[#0198a7] border-opacity-10">
+                                    <div className="flex items-start gap-2">
+                                      <Check className="w-4 h-4 text-[#0198a7] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                                      <p className="text-xs font-medium text-[#0198a7]">{addon.pricing.bonus}</p>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-3 pt-4 border-t border-[#0198a7] border-opacity-10">
+                    <button
+                      onClick={() => scrollToSection('get-started')}
+                      className="flex-1 px-4 py-2.5 bg-[#0198a7] text-white rounded-lg text-sm font-medium transition-all duration-220 hover:scale-105 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0198a7]"
+                      aria-label={`Get started with ${addon.name}`}
+                    >
+                      Get Started
+                    </button>
+                    <button
+                      onClick={() => toggleCard(index)}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-[#0198a7] text-[#0198a7] rounded-lg text-sm font-medium transition-all duration-220 hover:bg-[#0198a7] hover:bg-opacity-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0198a7]"
+                      aria-label={`${isExpanded ? 'Collapse' : 'Learn more about'} ${addon.name}`}
+                    >
+                      {isExpanded ? (
+                        <>
+                          <span>Show less</span>
+                          <ChevronUp className="w-4 h-4" aria-hidden="true" />
+                        </>
+                      ) : (
+                        <>
+                          <span>Learn more</span>
+                          <ChevronDown className="w-4 h-4" aria-hidden="true" />
+                        </>
+                      )}
+                    </button>
                   </div>
                 </div>
-
-                <div className="mb-4">
-                  <p className="text-xs font-medium text-[#0b1430]/70 mb-2">What's included:</p>
-                  <ul className="grid gap-2">
-                    {addon.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#0198a7] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-sm text-[#0b1430]/80">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-[#0198a7] border-opacity-10">
-                  <span className="text-sm font-medium text-[#0198a7]">{addon.price}</span>
-                  <button
-                    onClick={() => scrollToSection('get-started')}
-                    className="text-sm font-medium text-[#253f94] hover:text-[#0198a7] transition-colors duration-150"
-                    aria-label={`Learn more about ${addon.name}`}
-                  >
-                    Learn more →
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
