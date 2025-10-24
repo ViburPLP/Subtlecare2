@@ -1,13 +1,892 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subtle Care</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Subtle Care — Transparent Healthcare Billing</title>
+    <meta
+      name="description"
+      content="Subtle Care reviews hospital bills, compares medical quotes and coordinates second opinions so families pay fairly for healthcare."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-x" viewBox="0 0 24 24">
+          <path d="m18 6-12 12m0-12 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-file" viewBox="0 0 24 24">
+          <path d="M14 3H6.5A2.5 2.5 0 0 0 4 5.5v13A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V9.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+          <path d="M14 3v6h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+          <path d="M8 13h6M8 17h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-dollar" viewBox="0 0 24 24">
+          <path d="M12 2v20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M16.5 7.5A3.5 3.5 0 0 0 12 4H9.5a2.5 2.5 0 0 0 0 5H14a3 3 0 0 1 0 6H8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-building" viewBox="0 0 24 24">
+          <rect x="4" y="3" width="16" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="M4 9h16M9 3v18M15 3v18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M12 18h.01" fill="none" stroke="currentColor" stroke-width="2" />
+        </symbol>
+        <symbol id="icon-stethoscope" viewBox="0 0 24 24">
+          <path d="M5 3v6a5 5 0 0 0 10 0V3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M10 17a4 4 0 0 0 8 0v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          <circle cx="18" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+        </symbol>
+        <symbol id="icon-baby" viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="M5 21a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M9.5 9a1 1 0 0 0 1 1m3-1a1 1 0 0 0 1 1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-home" viewBox="0 0 24 24">
+          <path d="M4 11.5 12 4l8 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+          <path d="M6 10.5V20h12v-9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M10 20v-4h4v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-upload" viewBox="0 0 24 24">
+          <path d="M12 19V5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M7 10l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="m20 20-3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-check-circle" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-plane" viewBox="0 0 24 24">
+          <path d="m2.5 12 8.5-2.5V4l10 8-10 8v-5.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-calculator" viewBox="0 0 24 24">
+          <rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="M5 9h14" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="M9 13h2m-2 4h2m4-4h2m-2 4h2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-trending" viewBox="0 0 24 24">
+          <path d="M4 18 10.5 11.5l4 3L20 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M14 9h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-quote" viewBox="0 0 24 24">
+          <path d="M9 7H5l2-3H5a4 4 0 0 0 0 8h4V7Zm10 0h-4l2-3h-2a4 4 0 1 0 0 8h4V7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+          <path d="M12 21c-5.5-2-8-5.5-8-11V5l8-3 8 3v5c0 5.5-2.5 9-8 11Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-lock" viewBox="0 0 24 24">
+          <rect x="4.5" y="11" width="15" height="9" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-credit-card" viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="M3 9h18M7 15h3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-message" viewBox="0 0 24 24">
+          <path d="M21 11.5a7.5 7.5 0 0 1-8 7.5 8.5 8.5 0 0 1-3.7-.8L3 20l1.9-4.4a7.5 7.5 0 1 1 16.1-4.1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+          <path d="M4 4h3l2 5-2 1a12.5 12.5 0 0 0 7 7l1-2 5 2v3a2 2 0 0 1-2.2 2 17.5 17.5 0 0 1-13.8-13.8A2 2 0 0 1 4 4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-pin" viewBox="0 0 24 24">
+          <path d="M19 10c0 5.25-7 12-7 12S5 15.25 5 10a7 7 0 0 1 14 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+          <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path d="M5 13.5 9.5 18 19 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+          <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-chevron-up" viewBox="0 0 24 24">
+          <path d="m18 15-6-6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-arrow-down" viewBox="0 0 24 24">
+          <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+          <path d="M20.5 11.5a8.5 8.5 0 0 1-12.93 7.21L4 20.5l1.86-3.42A8.5 8.5 0 1 1 20.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+          <path d="m9.5 10.5 1.5 3 3-1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <button class="site-logo" data-scroll="hero" aria-label="Back to top">Subtle Care</button>
+        <nav class="site-nav" aria-label="Primary">
+          <button class="site-nav__link" data-scroll="services">Services</button>
+          <button class="site-nav__link" data-scroll="pricing">Pricing</button>
+          <button class="site-nav__link" data-scroll="get-started">Get started</button>
+          <button class="button button--primary site-nav__cta" data-scroll="get-started">Start your bill review</button>
+        </nav>
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <svg aria-hidden="true"><use href="#icon-menu"></use></svg>
+        </button>
+      </div>
+      <div class="container mobile-menu" aria-hidden="true">
+        <button data-scroll="services">Services</button>
+        <button data-scroll="pricing">Pricing</button>
+        <button data-scroll="get-started">Get started</button>
+        <button class="button button--primary" data-scroll="get-started">Start your bill review</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="container hero__content">
+          <div class="hero__inner">
+            <div class="hero__intro">
+              <h1>Fair, clear hospital bills — guided every step.</h1>
+              <p>
+                Upload your hospital invoice. We audit, compare quotes and arrange independent second opinions so families don't pay more than they should.
+              </p>
+              <div class="hero__actions">
+                <button class="button button--light" data-scroll="get-started">Start your bill review</button>
+                <button class="button button--ghost" data-scroll="how-it-works">How it works</button>
+              </div>
+              <p class="hero__trust">Trusted by families, employers and healthcare advocates.</p>
+            </div>
+            <div class="hero__metrics">
+              <div class="metric">
+                <span class="metric__value" data-counter="5000">0+</span>
+                <span class="metric__label">Bills reviewed</span>
+              </div>
+              <div class="metric">
+                <span class="metric__value" data-counter="2500">0+</span>
+                <span class="metric__label">Families helped</span>
+              </div>
+              <div class="metric">
+                <span class="metric__value" data-counter="8" data-prefix="KES ">0+</span>
+                <span class="metric__label">Million saved</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__chevron" aria-hidden="true">
+          <svg width="32" height="32"><use href="#icon-arrow-down"></use></svg>
+        </div>
+      </section>
+
+      <section class="about" aria-labelledby="about-title">
+        <div class="container text-center">
+          <h2 id="about-title" class="section-title">Why we exist</h2>
+          <p class="section-subtitle">
+            Healthcare costs shouldn't be a mystery. Too many families face surprise bills, unclear charges, and limited options when they need care most.
+          </p>
+          <p class="section-subtitle" style="margin-top:1.5rem">
+            Subtle Care brings transparency, choice, and advocacy to healthcare billing — ensuring every family pays fairly and receives the care they deserve.
+          </p>
+        </div>
+      </section>
+
+      <section class="section--muted" id="services" aria-labelledby="services-title" style="background: var(--color-muted);">
+        <div class="container">
+          <div class="text-center">
+            <h2 id="services-title" class="section-title">Our services</h2>
+            <p class="section-subtitle">Comprehensive support for every stage of your healthcare journey</p>
+          </div>
+          <div class="services-grid">
+            <article class="card">
+              <div class="icon-circle">
+                <svg aria-hidden="true"><use href="#icon-file"></use></svg>
+              </div>
+              <div>
+                <h3>Bill review &amp; audit</h3>
+                <p>Complete line-by-line audit of your hospital invoice to identify errors, overcharges, and questionable items.</p>
+              </div>
+              <div class="card__footer">
+                <span class="card__price">KES 3,000</span>
+                <button class="card__link" data-scroll="get-started">Upload bill →</button>
+              </div>
+            </article>
+            <article class="card">
+              <div class="icon-circle">
+                <svg aria-hidden="true"><use href="#icon-dollar"></use></svg>
+              </div>
+              <div>
+                <h3>Comparative quotes</h3>
+                <p>Get verified quotes from trusted providers to compare pricing and find the best value for your care.</p>
+              </div>
+              <div class="card__footer">
+                <span class="card__price">KES 3,000</span>
+                <button class="card__link" data-scroll="get-started">Get quotes →</button>
+              </div>
+            </article>
+            <article class="card">
+              <div class="icon-circle">
+                <svg aria-hidden="true"><use href="#icon-building"></use></svg>
+              </div>
+              <div>
+                <h3>Admission support &amp; coordination</h3>
+                <p>Navigate hospital admissions with expert guidance, pre-authorization support, and cost estimates before you commit.</p>
+              </div>
+              <div class="card__footer">
+                <span class="card__price">Recommended</span>
+                <button class="card__link" data-scroll="pricing">Learn more →</button>
+              </div>
+            </article>
+            <article class="card">
+              <div class="icon-circle">
+                <svg aria-hidden="true"><use href="#icon-stethoscope"></use></svg>
+              </div>
+              <div>
+                <h3>Expert second opinions</h3>
+                <p>Connect with qualified medical professionals for independent assessment of diagnosis and treatment recommendations.</p>
+              </div>
+              <div class="card__footer">
+                <span class="card__price">Recommended</span>
+                <button class="card__link" data-scroll="pricing">Find expert →</button>
+              </div>
+            </article>
+            <article class="card">
+              <div class="icon-circle">
+                <svg aria-hidden="true"><use href="#icon-baby"></use></svg>
+              </div>
+              <div>
+                <h3>Maternity planner</h3>
+                <p>Comprehensive pregnancy and delivery cost planning with hospital comparisons, package options, and budget tracking.</p>
+              </div>
+              <div class="card__footer">
+                <span class="card__price">Free tool</span>
+                <button class="card__link" data-scroll="maternity-planner">Use planner →</button>
+              </div>
+            </article>
+            <article class="card">
+              <div class="icon-circle">
+                <svg aria-hidden="true"><use href="#icon-home"></use></svg>
+              </div>
+              <div>
+                <h3>Home-based care</h3>
+                <p>Coordinate post-hospital care at home including nursing, physiotherapy, and medical equipment at transparent rates.</p>
+              </div>
+              <div class="card__footer">
+                <span class="card__price">Recommended</span>
+                <button class="card__link" data-scroll="pricing">Arrange care →</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" aria-labelledby="how-title">
+        <div class="container">
+          <div class="text-center">
+            <h2 id="how-title" class="section-title">How it works</h2>
+            <p class="section-subtitle">Three simple steps to transparent healthcare billing</p>
+          </div>
+          <div class="process-grid">
+            <article class="step" tabindex="0">
+              <div class="step__icon">
+                <svg aria-hidden="true"><use href="#icon-upload"></use></svg>
+              </div>
+              <h3>Upload your bill</h3>
+              <p>Securely submit your hospital invoice and medical documents through our encrypted platform.</p>
+            </article>
+            <article class="step" tabindex="0">
+              <div class="step__icon">
+                <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+              </div>
+              <h3>Expert review</h3>
+              <p>Our team audits every charge, sources alternative quotes, and identifies potential savings.</p>
+            </article>
+            <article class="step" tabindex="0">
+              <div class="step__icon">
+                <svg aria-hidden="true"><use href="#icon-check-circle"></use></svg>
+              </div>
+              <h3>Get results</h3>
+              <p>Receive a clear breakdown, savings report, and options for second opinions within 48 hours.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <div class="text-center">
+            <h2 id="pricing-title" class="section-title">Simple, transparent pricing</h2>
+            <p class="section-subtitle">Choose the plan that works best for you. No hidden fees.</p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="pricing-card">
+              <div>
+                <h3>Per case</h3>
+                <p class="muted">Ideal for individual cases and one-time bill reviews.</p>
+              </div>
+              <div>
+                <div class="pricing-card__price">KES 3,000</div>
+                <div class="pricing-card__billing">per bill reviewed</div>
+              </div>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Full bill audit &amp; line-item review</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Up to 3 provider quotes</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Detailed savings report</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Email support</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>48-hour turnaround</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Error identification</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Transparent breakdown of charges</li>
+              </ul>
+              <button class="button button--outline" data-scroll="get-started">Start a case</button>
+            </article>
+
+            <article class="pricing-card is-highlighted">
+              <div>
+                <span class="badge">Best value</span>
+                <h3 style="margin-top:1rem">Bills above KES 100K</h3>
+                <p class="muted">Best value for high-cost medical cases.</p>
+              </div>
+              <div>
+                <div class="pricing-card__price">KES 3,000 + 20%</div>
+                <div class="pricing-card__billing">of savings identified</div>
+              </div>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Everything in Per case</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Priority processing (24h)</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Dedicated case manager</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Negotiation support with providers</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Payment plan coordination</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Success-based fee only on savings</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Hospital liaison services</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Cost reduction strategies</li>
+              </ul>
+              <button class="button button--primary" data-scroll="get-started">Start a case</button>
+            </article>
+
+            <article class="pricing-card">
+              <div>
+                <h3>Employer enterprise</h3>
+                <p class="muted">Comprehensive solution for organizations managing multiple cases.</p>
+              </div>
+              <div>
+                <div class="pricing-card__price">Custom</div>
+                <div class="pricing-card__billing">tailored pricing</div>
+              </div>
+              <ul>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Unlimited bill reviews for employees</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Dedicated account manager</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Employee self-service portal</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>White-label option available</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>API access &amp; custom integrations</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Advanced reporting &amp; analytics</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Onsite training &amp; support</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>24/7 priority support</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Quarterly business reviews</li>
+                <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Custom workflows &amp; processes</li>
+              </ul>
+              <button class="button button--outline" data-scroll="get-started">Contact sales</button>
+            </article>
+          </div>
+
+          <div class="addons-wrapper">
+            <div class="text-center" style="margin-bottom:2.5rem">
+              <h3>Enhance your care with add-on services</h3>
+              <p class="section-subtitle">Complementary services designed to support your healthcare journey beyond bill review.</p>
+            </div>
+            <div class="addons-grid">
+              <article class="addon-card">
+                <div class="addon-card__header">
+                  <div class="icon-circle">
+                    <svg aria-hidden="true"><use href="#icon-stethoscope"></use></svg>
+                  </div>
+                  <div>
+                    <h4>Expert second opinion</h4>
+                    <p class="muted">Connect with qualified medical specialists for independent assessment of diagnosis and treatment plans.</p>
+                  </div>
+                </div>
+                <div>
+                  <p class="muted" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">What's included</p>
+                  <ul class="addon-card__benefits">
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Board-certified specialists</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Detailed medical report</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Treatment alternatives review</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Virtual consultation included</li>
+                  </ul>
+                </div>
+                <div class="addon-card__details">
+                  <div>
+                    <h5>Overview</h5>
+                    <p class="muted">Our Expert Second Opinion service connects you with board-certified medical specialists who provide independent assessments of your diagnosis and treatment plans.</p>
+                  </div>
+                  <div>
+                    <h5>How it works</h5>
+                    <ol style="display:grid; gap:0.6rem; padding-left:1.1rem;">
+                      <li>Submit your medical records and current diagnosis.</li>
+                      <li>We match you with a relevant specialist.</li>
+                      <li>Specialist reviews your case thoroughly.</li>
+                      <li>Receive a detailed medical report with recommendations.</li>
+                      <li>Join a virtual consultation to discuss findings.</li>
+                    </ol>
+                  </div>
+                  <div class="addon-card__pricing">
+                    <div class="addon-card__pricing-row"><span>General conditions</span><strong>KES 2,500</strong></div>
+                    <div class="addon-card__pricing-row"><span>Specialized conditions</span><strong>KES 5,000</strong></div>
+                  </div>
+                </div>
+                <div class="addon-card__actions">
+                  <button class="button button--primary" data-scroll="get-started">Get started</button>
+                  <button class="button button--outline" data-addon-toggle aria-expanded="false">
+                    <span data-addon-label>Learn more</span>
+                    <svg aria-hidden="true" width="18" height="18"><use href="#icon-chevron-down"></use></svg>
+                  </button>
+                </div>
+              </article>
+
+              <article class="addon-card">
+                <div class="addon-card__header">
+                  <div class="icon-circle">
+                    <svg aria-hidden="true"><use href="#icon-building"></use></svg>
+                  </div>
+                  <div>
+                    <h4>Admission support package</h4>
+                    <p class="muted">Navigate hospital admissions with expert guidance. We handle pre-authorization, coordinate with insurance, and provide cost estimates before admission.</p>
+                  </div>
+                </div>
+                <div>
+                  <p class="muted" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">What's included</p>
+                  <ul class="addon-card__benefits">
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Pre-authorization assistance</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Insurance coordination</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Cost estimate &amp; breakdown</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Hospital selection guidance</li>
+                  </ul>
+                </div>
+                <div class="addon-card__details">
+                  <div>
+                    <h5>Overview</h5>
+                    <p class="muted">Comprehensive support from admission through discharge. Our team handles coordination with hospitals and insurers, ensuring a smooth admission process.</p>
+                  </div>
+                  <div>
+                    <h5>How it works</h5>
+                    <ol style="display:grid; gap:0.6rem; padding-left:1.1rem;">
+                      <li>Pre-admission consultation and cost estimation.</li>
+                      <li>Insurance pre-authorization processing.</li>
+                      <li>Hospital admission coordination.</li>
+                      <li>Daily monitoring during admission (up to 15 days).</li>
+                      <li>Discharge processing and final bill review.</li>
+                    </ol>
+                  </div>
+                  <div class="addon-card__pricing">
+                    <div class="addon-card__pricing-row"><span>Package cost</span><strong>KES 20,000</strong></div>
+                    <p class="muted">Includes admission processing, follow-up for up to 15 days, and discharge processing.</p>
+                    <div class="addon-card__pricing-row"><span>Additional days</span><strong>KES 1,000 per day</strong></div>
+                    <div class="addon-card__pricing-row"><span>Bonus</span><strong>Final bill review complimentary</strong></div>
+                  </div>
+                </div>
+                <div class="addon-card__actions">
+                  <button class="button button--primary" data-scroll="get-started">Get started</button>
+                  <button class="button button--outline" data-addon-toggle aria-expanded="false">
+                    <span data-addon-label>Learn more</span>
+                    <svg aria-hidden="true" width="18" height="18"><use href="#icon-chevron-down"></use></svg>
+                  </button>
+                </div>
+              </article>
+
+              <article class="addon-card">
+                <div class="addon-card__header">
+                  <div class="icon-circle">
+                    <svg aria-hidden="true"><use href="#icon-home"></use></svg>
+                  </div>
+                  <div>
+                    <h4>Home care coordination</h4>
+                    <p class="muted">Arrange professional post-hospital care at home including nursing, physiotherapy, and medical equipment rental at transparent rates.</p>
+                  </div>
+                </div>
+                <div>
+                  <p class="muted" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">What's included</p>
+                  <ul class="addon-card__benefits">
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Vetted care providers</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Equipment rental coordination</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Care plan management</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Quality monitoring</li>
+                  </ul>
+                </div>
+                <div class="addon-card__details">
+                  <div>
+                    <h5>Overview</h5>
+                    <p class="muted">Post-discharge care coordination designed to support recovery at home. We arrange nursing, physiotherapy, medical equipment, and ongoing care management tailored to your needs.</p>
+                  </div>
+                  <div>
+                    <h5>How it works</h5>
+                    <ol style="display:grid; gap:0.6rem; padding-left:1.1rem;">
+                      <li>Assessment of post-discharge care needs.</li>
+                      <li>Matching with qualified care providers.</li>
+                      <li>Medical equipment arrangement and rental.</li>
+                      <li>Care plan development and coordination.</li>
+                      <li>Ongoing quality monitoring and adjustments.</li>
+                    </ol>
+                  </div>
+                  <div class="addon-card__pricing">
+                    <p class="muted">Pricing is customized based on individual care needs, duration, and services required. Contact us for a personalised quote.</p>
+                  </div>
+                </div>
+                <div class="addon-card__actions">
+                  <button class="button button--primary" data-scroll="get-started">Get started</button>
+                  <button class="button button--outline" data-addon-toggle aria-expanded="false">
+                    <span data-addon-label>Learn more</span>
+                    <svg aria-hidden="true" width="18" height="18"><use href="#icon-chevron-down"></use></svg>
+                  </button>
+                </div>
+              </article>
+
+              <article class="addon-card">
+                <div class="addon-card__header">
+                  <div class="icon-circle">
+                    <svg aria-hidden="true"><use href="#icon-plane"></use></svg>
+                  </div>
+                  <div>
+                    <h4>International medical travel</h4>
+                    <p class="muted">Access affordable, high-quality medical care abroad. We coordinate hospital selection, travel logistics, and post-treatment follow-up.</p>
+                  </div>
+                </div>
+                <div>
+                  <p class="muted" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">What's included</p>
+                  <ul class="addon-card__benefits">
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Hospital accreditation verification</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Travel &amp; accommodation support</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Medical records coordination</li>
+                    <li><svg aria-hidden="true"><use href="#icon-check"></use></svg>Cost comparison across facilities</li>
+                  </ul>
+                </div>
+                <div class="addon-card__details">
+                  <div>
+                    <h5>Overview</h5>
+                    <p class="muted">Access world-class medical care abroad at competitive prices. We handle international hospital selection, travel, accommodation, and seamless medical records transfer.</p>
+                  </div>
+                  <div>
+                    <h5>How it works</h5>
+                    <ol style="display:grid; gap:0.6rem; padding-left:1.1rem;">
+                      <li>Medical needs assessment and hospital selection.</li>
+                      <li>Verification of hospital accreditation and specialists.</li>
+                      <li>Cost comparison across multiple facilities.</li>
+                      <li>Travel and accommodation coordination.</li>
+                      <li>Medical records transfer and translation.</li>
+                      <li>On-ground support during treatment.</li>
+                      <li>Post-treatment follow-up and claims assistance.</li>
+                    </ol>
+                  </div>
+                  <div class="addon-card__pricing">
+                    <p class="muted">Pricing is tailored based on destination, treatment type, duration, and client requirements. We provide detailed quotes comparing multiple facilities.</p>
+                  </div>
+                </div>
+                <div class="addon-card__actions">
+                  <button class="button button--primary" data-scroll="get-started">Get started</button>
+                  <button class="button button--outline" data-addon-toggle aria-expanded="false">
+                    <span data-addon-label>Learn more</span>
+                    <svg aria-hidden="true" width="18" height="18"><use href="#icon-chevron-down"></use></svg>
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="maternity" id="maternity-planner" aria-labelledby="maternity-title">
+        <div class="container">
+          <div class="maternity-card">
+            <div class="maternity-hero">
+              <div class="icon-circle">
+                <svg aria-hidden="true"><use href="#icon-baby"></use></svg>
+              </div>
+              <h2 id="maternity-title">Maternity cost planner</h2>
+              <p>Plan your pregnancy and delivery costs with our comprehensive comparison tool. Compare hospitals, packages, and budget for your growing family.</p>
+              <button class="button button--light" data-maternity-toggle aria-expanded="false">Use the maternity planner</button>
+            </div>
+            <div class="maternity-details">
+              <div class="maternity-highlights">
+                <div class="highlight-card">
+                  <div class="icon-circle" style="margin:0 auto; background: rgba(1,152,167,0.12);">
+                    <svg aria-hidden="true"><use href="#icon-building"></use></svg>
+                  </div>
+                  <h4>Hospital comparison</h4>
+                  <p class="muted">Compare delivery packages from verified hospitals.</p>
+                </div>
+                <div class="highlight-card">
+                  <div class="icon-circle" style="margin:0 auto; background: rgba(37,63,148,0.12);">
+                    <svg aria-hidden="true"><use href="#icon-calculator"></use></svg>
+                  </div>
+                  <h4>Cost calculator</h4>
+                  <p class="muted">Estimate total costs including pre and postnatal care.</p>
+                </div>
+                <div class="highlight-card">
+                  <div class="icon-circle" style="margin:0 auto; background: rgba(1,152,167,0.12);">
+                    <svg aria-hidden="true"><use href="#icon-trending"></use></svg>
+                  </div>
+                  <h4>Budget tracker</h4>
+                  <p class="muted">Track expenses and savings throughout pregnancy.</p>
+                </div>
+              </div>
+              <div>
+                <h4>What's included</h4>
+                <ul class="checklist">
+                  <li><span>✓</span>Antenatal visit cost estimates</li>
+                  <li><span>✓</span>Delivery package comparisons</li>
+                  <li><span>✓</span>Caesarean vs natural delivery costs</li>
+                  <li><span>✓</span>Postnatal care budgeting</li>
+                  <li><span>✓</span>Baby supplies checklist</li>
+                  <li><span>✓</span>Insurance coverage calculator</li>
+                  <li><span>✓</span>Payment plan options</li>
+                  <li><span>✓</span>Hidden cost alerts</li>
+                </ul>
+              </div>
+              <div class="text-center">
+                <p class="muted">Free tool for all expecting families.</p>
+                <button class="button button--primary" data-scroll="get-started">Get started now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="social-proof-title">
+        <div class="container">
+          <div class="statistics-grid">
+            <div class="metric">
+              <span class="metric__value" data-counter="5000">0+</span>
+              <span class="metric__label">Bills reviewed</span>
+            </div>
+            <div class="metric">
+              <span class="metric__value" data-counter="2500">0+</span>
+              <span class="metric__label">Families helped</span>
+            </div>
+            <div class="metric">
+              <span class="metric__value" data-counter="8" data-prefix="KES ">0+</span>
+              <span class="metric__label">Million saved</span>
+            </div>
+          </div>
+          <h2 id="social-proof-title" class="section-title">Stories from the community</h2>
+          <div class="testimonials">
+            <article class="testimonial">
+              <svg aria-hidden="true"><use href="#icon-quote"></use></svg>
+              <p class="testimonial__quote">“Subtle Care saved us over $12,000 on a surgical procedure. The team was thorough, responsive, and genuinely cared about our situation.”</p>
+              <div class="testimonial__author">
+                <strong>Sarah M.</strong>
+                <span>Parent, Nairobi</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <svg aria-hidden="true"><use href="#icon-quote"></use></svg>
+              <p class="testimonial__quote">“As an employer, offering Subtle Care to our team has been transformative. Our employees feel supported, and we've reduced healthcare costs significantly.”</p>
+              <div class="testimonial__author">
+                <strong>James K.</strong>
+                <span>HR Director</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <svg aria-hidden="true"><use href="#icon-quote"></use></svg>
+              <p class="testimonial__quote">“I was overwhelmed by medical bills after an emergency. Subtle Care explained everything, found better options, and helped me afford the care I needed.”</p>
+              <div class="testimonial__author">
+                <strong>Patricia N.</strong>
+                <span>Patient Advocate</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="faq-title">
+        <div class="container">
+          <div class="text-center">
+            <h2 id="faq-title" class="section-title">Frequently asked questions</h2>
+            <p class="section-subtitle">Everything you need to know about our service.</p>
+          </div>
+          <div class="faq-list">
+            <article class="faq-item">
+              <button aria-expanded="true">
+                <span>How does the bill review process work?</span>
+                <svg aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+              </button>
+              <div class="faq-answer">
+                <p>Upload your hospital invoice through our secure portal. Our team audits every line item, compares prices with verified providers, and delivers a comprehensive savings report within 48 hours.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button aria-expanded="false">
+                <span>Is my information secure?</span>
+                <svg aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+              </button>
+              <div class="faq-answer">
+                <p>We use bank-level encryption for all uploads and storage. Your medical information is protected under strict privacy policies compliant with Kenyan data protection laws and GDPR standards.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button aria-expanded="false">
+                <span>What if I don't find savings?</span>
+                <svg aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+              </button>
+              <div class="faq-answer">
+                <p>If we don't identify potential savings or billing errors, we'll refund 100% of your payment. Our goal is to ensure you only pay for value delivered.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button aria-expanded="false">
+                <span>Can you help with insurance claims?</span>
+                <svg aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+              </button>
+              <div class="faq-answer">
+                <p>While we focus on bill transparency and price comparison, we can connect you with trusted partners who specialize in insurance claim advocacy.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button aria-expanded="false">
+                <span>How long does the review take?</span>
+                <svg aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+              </button>
+              <div class="faq-answer">
+                <p>Standard reviews are completed within 48 hours. Employer plan members receive priority processing with 24-hour turnaround times.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="get-started" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="text-center">
+            <h2 id="contact-title" class="section-title">Contact us to get started</h2>
+            <p class="section-subtitle">Share your medical bills with us and let our team start working for you.</p>
+          </div>
+
+          <div class="contact-grid">
+            <a class="contact-method" href="mailto:hello@subtlecare.co.ke?subject=Medical%20Bill%20Review%20Request&amp;body=Hello%20Subtle%20Care%20Team,%0D%0A%0D%0AI%20would%20like%20to%20submit%20my%20medical%20bills%20for%20review.%0D%0A%0D%0AThank%20you.">
+              <div class="icon-circle" style="margin:0 auto; background: rgba(1,152,167,0.12);">
+                <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
+              </div>
+              <h4>Email</h4>
+              <p class="muted">Send your bills securely via email.</p>
+              <strong style="color:var(--color-primary)">Send email →</strong>
+            </a>
+            <a class="contact-method" href="https://wa.me/254700000000?text=Hello%20Subtle%20Care!%20I%20would%20like%20to%20share%20my%20medical%20bills%20for%20review." target="_blank" rel="noopener">
+              <div class="icon-circle" style="margin:0 auto; background: rgba(37,211,102,0.15);">
+                <svg aria-hidden="true"><use href="#icon-message"></use></svg>
+              </div>
+              <h4>WhatsApp</h4>
+              <p class="muted">Share your bills via WhatsApp.</p>
+              <strong style="color:#25d366">Open WhatsApp →</strong>
+            </a>
+          </div>
+
+          <div class="contact-logos">
+            <div class="contact-logos__item">
+              <div class="icon-circle" style="background: rgba(1,152,167,0.12);">
+                <svg aria-hidden="true"><use href="#icon-shield"></use></svg>
+              </div>
+              <span class="muted" style="text-transform:uppercase; font-weight:600; font-size:0.75rem; color:var(--color-dark);">ODPC Kenya</span>
+            </div>
+            <div class="contact-logos__item">
+              <div class="icon-circle" style="background: rgba(37,63,148,0.12);">
+                <svg aria-hidden="true"><use href="#icon-shield"></use></svg>
+              </div>
+              <span class="muted" style="text-transform:uppercase; font-weight:600; font-size:0.75rem; color:var(--color-dark);">KMPDC</span>
+            </div>
+            <div class="contact-logos__item">
+              <div class="icon-circle" style="background: rgba(1,152,167,0.12);">
+                <svg aria-hidden="true"><use href="#icon-shield"></use></svg>
+              </div>
+              <span class="muted" style="text-transform:uppercase; font-weight:600; font-size:0.75rem; color:var(--color-dark);">MOH Kenya</span>
+            </div>
+          </div>
+
+          <div class="security-grid">
+            <div class="security-card">
+              <svg aria-hidden="true"><use href="#icon-shield"></use></svg>
+              <div>
+                <p><strong>GDPR compliant</strong></p>
+                <p class="muted">Your data is protected under strict privacy standards.</p>
+              </div>
+            </div>
+            <div class="security-card">
+              <svg aria-hidden="true"><use href="#icon-lock"></use></svg>
+              <div>
+                <p><strong>Encrypted storage</strong></p>
+                <p class="muted">Bank-level security for all documents.</p>
+              </div>
+            </div>
+            <div class="security-card">
+              <svg aria-hidden="true"><use href="#icon-credit-card"></use></svg>
+              <div>
+                <p><strong>Secure payment</strong></p>
+                <p class="muted">PCI-DSS certified payment processing.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="support-cta">
+            <h3>Need help? We're here for you.</h3>
+            <p class="muted">Chat with our team or send us a message and we'll respond within hours.</p>
+            <div class="support-cta__actions">
+              <a class="button button--primary" href="mailto:hello@subtlecare.co.ke">Email us</a>
+              <a class="button button--outline" href="tel:+254700000000">Call us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h3>Subtle Care</h3>
+            <p style="color:rgba(255,255,255,0.7)">Transparent healthcare billing and patient advocacy for families and organizations.</p>
+          </div>
+          <div>
+            <h4>Quick links</h4>
+            <ul class="footer-links">
+              <li><a href="#how-it-works">How it works</a></li>
+              <li><a href="#get-started">Client portal</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul class="footer-contact">
+              <li><a href="mailto:hello@subtlecare.co.ke">hello@subtlecare.co.ke</a></li>
+              <li><a href="tel:+254700000000">+254 700 000 000</a></li>
+              <li><span>Nairobi, Kenya</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <p>© <span data-year></span> Subtle Care. All rights reserved. | Privacy policy | Terms of service</p>
+          <div class="footer-notes">
+            <p><strong>Sources &amp; Notes</strong></p>
+            <p>
+              Content and pricing model based on the Subtle Care service framework. Pricing includes KES 3,000 per-case bill review and 20% of savings for bills above KES 100,000. Employer subscription tiers and add-on service pricing are recommended and customizable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="whatsapp-toggle" role="dialog" aria-live="polite">
+      <div class="whatsapp-toggle__panel">
+        <h4>Chat with us</h4>
+        <p>We typically reply within minutes.</p>
+        <a class="button button--primary" href="https://wa.me/254700000000?text=Hello%20Subtle%20Care!%20I%20have%20a%20question%20about%20your%20services." target="_blank" rel="noopener">Start WhatsApp chat</a>
+      </div>
+      <button class="whatsapp-toggle__button" aria-expanded="false" aria-label="Open WhatsApp chat">
+        <svg aria-hidden="true" width="30" height="30"><use href="#icon-whatsapp"></use></svg>
+        <span class="whatsapp-toggle__badge" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <script src="assets/script.js" defer></script>
   </body>
 </html>
